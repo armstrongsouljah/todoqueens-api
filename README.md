@@ -43,3 +43,30 @@ Request methods:
   - find a specific item
   - delete the item 
   - show a message or return the that doesn't have that deleted item
+
+
+  ## traditional databases (sql datatbases)
+  - always have  a pre-defined structure (how data is supposed to look)
+  {
+    primary key id int,
+    fullName char defined_length
+  }
+
+  ## nosql  databases
+  - store data without a pre-defined structure
+  {
+    fullName: 'sdsdsdd',
+    age: 34,
+    address: {
+      poBox:2324
+    }
+  }
+  {
+    fullName: 'sdsdsdd',
+    age: 34,
+    address: {
+    province: 'central'
+    }
+  }
+
+  [read more](https://docs.mongodb.com/)
