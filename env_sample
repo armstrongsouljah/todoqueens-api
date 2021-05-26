@@ -1,0 +1,6 @@
+PORT=4000
+START_UP_MESSAGE="Server is running at :"
+DATABASE_URL='replace this one'
+
+example below
+mongodb+srv://<username>:<password>@usershub.jneex.mongodb.net/reviewdb?retryWrites=true&w=majority

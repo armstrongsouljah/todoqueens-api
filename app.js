@@ -1,7 +1,8 @@
 require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
- const reviewRoutes = require('./routes/reviews.routes');
+const reviewRoutes = require('./routes/reviews.routes');
+const userRoutes = require('./routes/user.routes');
 const mongoose = require('mongoose');
 
 const {DATABASE_URL} = process.env
@@ -12,6 +13,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 
 app.use('/reviews/', reviewRoutes);
+app.use('/auth/', userRoutes)
 
 
 // run the server

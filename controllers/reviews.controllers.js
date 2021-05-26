@@ -2,31 +2,59 @@
 const {Review, reviews} = require('../models/Review');
 const  ReviewModel = require('../models/review.model');
 
-const fetchAllReviews = () => {
-    return ReviewModel.find().then(data => {
-        return { data }
+const fetchAllReviews = async () => {
+    let response 
+    try  {
+        response = await ReviewModel.find();
+        return { data: response }
+    } catch(error) {
+        return error;
+    }
+    // ReviewModel.find()
+    // .then(cb, err)  // promise has been resolved
+    // .catch() // while trying to resolve a promise an error happened and the promise was rejected
     
-    }).catch(err => {
-        throw new Error(err)}
-        );
 }
 
-const createReview = (review) => {
-    let pk = reviews.length ? reviews.length +1 : 1;
-    review = {...review, pk}
-    return Review.addReview(review)
+const createReview = async (review) => {
+    // use mongodb to create a new object
+    const {fullName, message} = review;
+    let reviewData = new ReviewModel({fullName, message})
+    return await reviewData.save()
 }
 
-const fetchReview = (id) => {
-    return Review.getSingleReview(id);
+const fetchReview = async (id) => {
+    // retrieve a single item
+    let review;
+    try {
+        review  = await ReviewModel.findById({_id:id})
+        if(!review) return {message: "Review does not exist"}
+        return review
+    }
+    catch (error) {
+        return error
+    }
 }
 
-const updateReview = (id, data) => {
-    return Review.updateReview(id, data)
+const updateReview = async (_id, message) => {
+     // retrieve a single item and update it
+     try {
+         await ReviewModel.findByIdAndUpdate(_id, { message }).exec()
+         return {message: "Review updated succesfully"}
+     }
+     catch (error) {
+         return error
+     }
 }
 
-const deleteReview = id => {
-    return Review.removeReview(id);
+const deleteReview = async (_id) => {
+    try {
+        await ReviewModel.findByIdAndDelete(_id).exec()
+        return {message: "Review removed succesfully"}
+    }
+    catch (error) {
+        return error
+    }
 }
 module.exports = {
     fetchAllReviews,
