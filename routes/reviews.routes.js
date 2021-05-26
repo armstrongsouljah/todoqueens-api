@@ -2,8 +2,8 @@ const router = require('express').Router()
 const reviewControllers = require('../controllers/reviews.controllers');
 
 // implement application routes / endpoints
-router.get('/', (req, res)=> {
-    let reviews = reviewControllers.fetchAllReviews();
+router.get('/', async (req, res)=> {
+    let reviews = await reviewControllers.fetchAllReviews();
     return res.json({reviews})
 });
 

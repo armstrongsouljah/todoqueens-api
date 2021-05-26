@@ -70,3 +70,7 @@ Request methods:
   }
 
   [read more](https://docs.mongodb.com/)
+  [read more on mongoose]()
+
+  # Schema 
+  - A structure of how the data to be stored is formulated
