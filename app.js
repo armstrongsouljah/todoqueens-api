@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const reviewRoutes = require('./routes/reviews.routes');
 const userRoutes = require('./routes/user.routes');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 const {DATABASE_URL} = process.env
 
@@ -11,6 +12,7 @@ const {DATABASE_URL} = process.env
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
+app.use(cors());
 
 app.use('/reviews/', reviewRoutes);
 app.use('/auth/', userRoutes)
